@@ -195,7 +195,7 @@ public class PlayerStats : MonoBehaviour
         GameManager.instance.progresBarBg.gameObject.SetActive(false);
     }
 
-    public IEnumerator Cooldown(int cooldown, Action onCoolDownEnd)
+    public IEnumerator Cooldown(float cooldown, Action onCoolDownEnd)
     {
         yield return new WaitForSeconds(cooldown);
         onCoolDownEnd?.Invoke();
