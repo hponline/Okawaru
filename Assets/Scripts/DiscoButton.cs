@@ -1,6 +1,4 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Video;
 
 public class DiscoButton : baseInteractableItems
 {
@@ -26,7 +24,7 @@ public class DiscoButton : baseInteractableItems
         }
         canUse = false;
         Play();        
-
+        GameManager.instance.bgMusic.Stop();
         // 57 saniye sonra tekrar aktif hale getir ve objeleri kapat
         StartCoroutine(PlayerStats.Instance.Cooldown(57f, () =>
         {            
@@ -35,6 +33,7 @@ public class DiscoButton : baseInteractableItems
             canvasAnim.SetActive(false);
             discoPlane.SetActive(false);
             _discoBtn.SetBool("IsDisco", false);
+            GameManager.instance.bgMusic.Play();
         }));
     }
     public void Play()
@@ -44,8 +43,8 @@ public class DiscoButton : baseInteractableItems
         discoBallAnim.SetActive(true);
         canvasAnim.SetActive(true);
         particle.SetActive(true);
-        PlayerStats.Instance.RestSanity(500);
-        PlayerStats.Instance.RestStamina(500);
-        PlayerStats.Instance.EatFood(500);
+        PlayerStats.Instance.currentStamina += 500;
+        PlayerStats.Instance.currentSanity += 500;
+        PlayerStats.Instance.currentHunger += 500;
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DayNightManager : MonoBehaviour
 {
@@ -87,6 +88,13 @@ public class DayNightManager : MonoBehaviour
                 temperatureIncreasing = true;
         }
 
+        var scene = SceneManager.GetSceneByBuildIndex(2);
+        if (scene.buildIndex == 2)
+        {
+            directionalLight.gameObject.SetActive(true);
+        }
+        else
+            directionalLight.gameObject.SetActive(false);
         RotateSun();
     }
     public void RotateSun()
